@@ -511,6 +511,7 @@ function initializeTemplateSelection() {
         }
     });
 // --- End of templates.js content ---
+}
 
 document.addEventListener('DOMContentLoaded', function() {
     const prevBtn = document.querySelector('.prev-btn');
