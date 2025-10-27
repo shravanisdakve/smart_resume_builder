@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($stmt = $conn->prepare($sql)) {
                 $stmt->bind_param('ssssss', $firstName, $lastName, $gender, $email, $password, $number);
                 if ($stmt->execute()) {
-                    header('Location: login.php');
+                    header('Location: login.html');
                     exit;
                 } else {
                     $error = 'Error creating account. Please try again.';
@@ -163,7 +163,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
                 <button type="submit" class="btn-register">Create Account</button>
             </form>
-            <a href="login.php" class="btn-login">Already have an account? Login</a>
+            <a href="login.html" class="btn-login">Already have an account? Login</a>
         </div>
     </div>
     <script>

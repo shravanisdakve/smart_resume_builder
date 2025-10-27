@@ -30,7 +30,7 @@ A simple, session-based resume builder with a modern UI. Users can register, log
 
 3) Open the app
    - Register: `http://localhost:8000/register.php`
-   - Login: `http://localhost:8000/login.php`
+   - Login: `http://localhost:8000/login.html`
    - After login you’ll be redirected to `resume.php` (the builder).
 
 ### Project Structure
