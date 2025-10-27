@@ -245,208 +245,251 @@ function previewImage(){
 
 // --- Start of templates.js content ---
 function initializeTemplateSelection() {
-    const resumeData = JSON.parse(localStorage.getItem('resumeDraft'));
+    // Attempt to get data, default to an empty object if not found or invalid
+    let resumeData = {};
+    try {
+        const storedData = localStorage.getItem('resumeDraft');
+        resumeData = storedData ? JSON.parse(storedData) : {};
+    } catch (e) {
+        console.error("Error parsing resume data from localStorage:", e);
+        resumeData = {}; // Use empty data on error
+    }
+
     const previewPanel = document.getElementById('resume-preview');
-    const thumbnails = document.querySelectorAll('.template-selection-section .thumbnail'); // Select thumbnails within the new section
+    // Ensure previewPanel exists before proceeding
+    if (!previewPanel) {
+        console.error("Element with ID 'resume-preview' not found.");
+        return;
+    }
+
+    // Select thumbnails only within the specific template section
+    const thumbnails = document.querySelectorAll('.template-selection-section .thumbnail');
 
     function generateResumeHTML(template) {
         let html = `<div class="${template}-template">`;
 
-        if(resumeData) { // Check if resumeData exists
-            if(template === 'harvard'){
-                html += `
-                    <h1>${resumeData.firstname} ${resumeData.middlename} ${resumeData.lastname}</h1>
-                    <p>${resumeData.address} | ${resumeData.phoneno} | ${resumeData.email}</p>
-                    <h2>Summary</h2>
-                    <p>${resumeData.summary}</p>
+        // Ensure resumeData is an object
+        const data = typeof resumeData === 'object' && resumeData !== null ? resumeData : {};
+
+        // Provide default empty arrays if properties don't exist or aren't arrays
+        const experiences = Array.isArray(data.experiences) ? data.experiences : [];
+        const educations = Array.isArray(data.educations) ? data.educations : [];
+        const skills = Array.isArray(data.skills) ? data.skills : [];
+        const projects = Array.isArray(data.projects) ? data.projects : [];
+
+        // Safely access properties, providing default empty strings
+        const firstname = data.firstname || '';
+        const middlename = data.middlename || '';
+        const lastname = data.lastname || '';
+        const address = data.address || '';
+        const phoneno = data.phoneno || '';
+        const email = data.email || '';
+        const summary = data.summary || '';
+        const designation = data.designation || '';
+
+
+        if (template === 'harvard') {
+            html += `
+                <h1>${firstname} ${middlename} ${lastname}</h1>
+                <p>${address} | ${phoneno} | ${email}</p>
+                <h2>Summary</h2>
+                <p>${summary}</p>
+                <h2>Experience</h2>
+                ${experiences.map(exp => `
+                    <div>
+                        <h3>${exp.exp_title || ''}</h3>
+                        <p><strong>${exp.exp_organization || ''}</strong> | ${exp.exp_location || ''} | ${exp.exp_start_date || ''} - ${exp.exp_end_date || ''}</p>
+                        <ul><li>${(exp.exp_description || '').replace(/\n/g, "</li><li>")}</li></ul>
+                    </div>
+                `).join('')}
+                <h2>Education</h2>
+                ${educations.map(edu => `
+                    <div>
+                        <h3>${edu.edu_degree || ''}</h3>
+                        <p><strong>${edu.edu_school || ''}</strong> | ${edu.edu_city || ''} | ${edu.edu_start_date || ''} - ${edu.edu_graduation_date || ''}</p>
+                        <ul><li>${(edu.edu_description || '').replace(/\n/g, "</li><li>")}</li></ul>
+                    </div>
+                `).join('')}
+                <h2>Skills</h2>
+                <ul>${skills.map(skill => `<li>${skill.skill || ''}</li>`).join('')}</ul>
+            `;
+        } else if (template === 'swiss') {
+            html += `
+                <div class="left-column">
+                    <h1>${firstname} ${middlename} ${lastname}</h1>
+                    <p>${designation}</p>
+                    <h2>About Me</h2>
+                    <p>${summary}</p>
+                    <h2>Contact</h2>
+                    <p>${address}</p>
+                    <p>${phoneno}</p>
+                    <p>${email}</p>
+                    <h2>Skills</h2>
+                    <ul>${skills.map(skill => `<li>${skill.skill || ''}</li>`).join('')}</ul>
+                </div>
+                <div class="right-column">
                     <h2>Experience</h2>
-                    ${resumeData.experiences.map(exp => `
+                    ${experiences.map(exp => `
                         <div>
-                            <h3>${exp.exp_title}</h3>
-                            <p><strong>${exp.exp_organization}</strong> | ${exp.exp_location} | ${exp.exp_start_date} - ${exp.exp_end_date}</p>
-                            <ul><li>${exp.exp_description.replace(/\n/g, "</li><li>")}</li></ul>
+                            <h3>${exp.exp_title || ''}</h3>
+                            <p><strong>${exp.exp_organization || ''}</strong> | ${exp.exp_location || ''} | ${exp.exp_start_date || ''} - ${exp.exp_end_date || ''}</p>
+                            <ul><li>${(exp.exp_description || '').replace(/\n/g, "</li><li>")}</li></ul>
                         </div>
                     `).join('')}
                     <h2>Education</h2>
-                    ${resumeData.educations.map(edu => `
+                    ${educations.map(edu => `
                         <div>
-                            <h3>${edu.edu_degree}</h3>
-                            <p><strong>${edu.edu_school}</strong> | ${edu.edu_city} | ${edu.edu_start_date} - ${edu.edu_graduation_date}</p>
-                            <ul><li>${edu.edu_description.replace(/\n/g, "</li><li>")}</li></ul>
+                            <h3>${edu.edu_degree || ''}</h3>
+                            <p><strong>${edu.edu_school || ''}</strong> | ${edu.edu_city || ''} | ${edu.edu_start_date || ''} - ${edu.edu_graduation_date || ''}</p>
+                            <ul><li>${(edu.edu_description || '').replace(/\n/g, "</li><li>")}</li></ul>
                         </div>
                     `).join('')}
-                    <h2>Skills</h2>
-                    <ul>${resumeData.skills.map(skill => `<li>${skill.skill}</li>`).join('')}</ul>
-                `;
-            } else if (template === 'swiss'){
-                html += `
-                    <div class="left-column">
-                        <h1>${resumeData.firstname} ${resumeData.middlename} ${resumeData.lastname}</h1>
-                        <p>${resumeData.designation}</p>
-                        <h2>About Me</h2>
-                        <p>${resumeData.summary}</p>
-                        <h2>Contact</h2>
-                        <p>${resumeData.address}</p>
-                        <p>${resumeData.phoneno}</p>
-                        <p>${resumeData.email}</p>
-                        <h2>Skills</h2>
-                        <ul>${resumeData.skills.map(skill => `<li>${skill.skill}</li>`).join('')}</ul>
-                    </div>
-                    <div class="right-column">
-                        <h2>Experience</h2>
-                        ${resumeData.experiences.map(exp => `
-                            <div>
-                                <h3>${exp.exp_title}</h3>
-                                <p><strong>${exp.exp_organization}</strong> | ${exp.exp_location} | ${exp.exp_start_date} - ${exp.exp_end_date}</p>
-                                <ul><li>${exp.exp_description.replace(/\n/g, "</li><li>")}</li></ul>
-                            </div>
-                        `).join('')}
-                        <h2>Education</h2>
-                        ${resumeData.educations.map(edu => `
-                            <div>
-                                <h3>${edu.edu_degree}</h3>
-                                <p><strong>${edu.edu_school}</strong> | ${edu.edu_city} | ${edu.edu_start_date} - ${edu.edu_graduation_date}</p>
-                                <ul><li>${edu.edu_description.replace(/\n/g, "</li><li>")}</li></ul>
-                            </div>
-                        `).join('')}
-                        <h2>Projects</h2>
-                        ${resumeData.projects.map(proj => `
-                            <div>
-                                <h3>${proj.proj_title}</h3>
-                                <p><a href="${proj.proj_link}">${proj.proj_link}</a></p>
-                                <ul><li>${proj.proj_description.replace(/\n/g, "</li><li>")}</li></ul>
-                            </div>
-                        `).join('')}
-                    </div>
-                `;
-            } else if (template === 'pinnacle'){
-                html += `
-                    <div class="header">
-                        <h1>${resumeData.firstname} ${resumeData.middlename} ${resumeData.lastname}</h1>
-                        <p>${resumeData.designation}</p>
-                    </div>
-                    <p>${resumeData.address} | ${resumeData.phoneno} | ${resumeData.email}</p>
-                    <h2>Summary</h2>
-                    <p>${resumeData.summary}</p>
-                    <h2>Experience</h2>
-                    ${resumeData.experiences.map(exp => `
+                    <h2>Projects</h2>
+                    ${projects.map(proj => `
                         <div>
-                            <h3>${exp.exp_title}</h3>
-                            <p><strong>${exp.exp_organization}</strong> | ${exp.exp_location} | ${exp.exp_start_date} - ${exp.exp_end_date}</p>
-                            <ul><li>${exp.exp_description.replace(/\n/g, "</li><li>")}</li></ul>
+                            <h3>${proj.proj_title || ''}</h3>
+                            <p><a href="${proj.proj_link || '#'}">${proj.proj_link || ''}</a></p>
+                            <ul><li>${(proj.proj_description || '').replace(/\n/g, "</li><li>")}</li></ul>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        } else if (template === 'pinnacle') {
+            html += `
+                <div class="header">
+                    <h1>${firstname} ${middlename} ${lastname}</h1>
+                    <p>${designation}</p>
+                </div>
+                <p>${address} | ${phoneno} | ${email}</p>
+                <h2>Summary</h2>
+                <p>${summary}</p>
+                <h2>Experience</h2>
+                ${experiences.map(exp => `
+                    <div>
+                        <h3>${exp.exp_title || ''}</h3>
+                        <p><strong>${exp.exp_organization || ''}</strong> | ${exp.exp_location || ''} | ${exp.exp_start_date || ''} - ${exp.exp_end_date || ''}</p>
+                        <ul><li>${(exp.exp_description || '').replace(/\n/g, "</li><li>")}</li></ul>
+                    </div>
+                `).join('')}
+                <h2>Education</h2>
+                ${educations.map(edu => `
+                    <div>
+                        <h3>${edu.edu_degree || ''}</h3>
+                        <p><strong>${edu.edu_school || ''}</strong> | ${edu.edu_city || ''} | ${edu.edu_start_date || ''} - ${edu.edu_graduation_date || ''}</p>
+                        <ul><li>${(edu.edu_description || '').replace(/\n/g, "</li><li>")}</li></ul>
+                    </div>
+                `).join('')}
+                <h2>Skills</h2>
+                <ul>${skills.map(skill => `<li>${skill.skill || ''}</li>`).join('')}</ul>
+            `;
+        } else if (template === 'elegant') {
+            html += `
+                <div class="header" style="background-color: #f0f0f0; color: #333;">
+                    <h1>${firstname} ${middlename} ${lastname}</h1>
+                    <p>${designation}</p>
+                </div>
+                <div style="padding: 20px;">
+                    <p style="text-align: center;">${address} | ${phoneno} | ${email}</p>
+                    <h2>Summary</h2>
+                    <p>${summary}</p>
+                    <h2>Experience</h2>
+                    ${experiences.map(exp => `
+                        <div>
+                            <h3>${exp.exp_title || ''}</h3>
+                            <p><strong>${exp.exp_organization || ''}</strong> | ${exp.exp_location || ''} | ${exp.exp_start_date || ''} - ${exp.exp_end_date || ''}</p>
+                            <ul><li>${(exp.exp_description || '').replace(/\n/g, "</li><li>")}</li></ul>
                         </div>
                     `).join('')}
                     <h2>Education</h2>
-                    ${resumeData.educations.map(edu => `
+                    ${educations.map(edu => `
                         <div>
-                            <h3>${edu.edu_degree}</h3>
-                            <p><strong>${edu.edu_school}</strong> | ${edu.edu_city} | ${edu.edu_start_date} - ${edu.edu_graduation_date}</p>
-                            <ul><li>${edu.edu_description.replace(/\n/g, "</li><li>")}</li></ul>
+                            <h3>${edu.edu_degree || ''}</h3>
+                            <p><strong>${edu.edu_school || ''}</strong> | ${edu.edu_city || ''} | ${edu.edu_start_date || ''} - ${edu.edu_graduation_date || ''}</p>
+                            <ul><li>${(edu.edu_description || '').replace(/\n/g, "</li><li>")}</li></ul>
                         </div>
                     `).join('')}
                     <h2>Skills</h2>
-                    <ul>${resumeData.skills.map(skill => `<li>${skill.skill}</li>`).join('')}</ul>
-                `;
-                        } else if (template === 'elegant'){
-                            html += `
-                                <div class="header" style="background-color: #f0f0f0; color: #333;">
-                                    <h1>${resumeData.firstname} ${resumeData.middlename} ${resumeData.lastname}</h1>
-                                    <p>${resumeData.designation}</p>
-                                </div>
-                                <div style="padding: 20px;">
-                                    <p style="text-align: center;">${resumeData.address} | ${resumeData.phoneno} | ${resumeData.email}</p>
-                                    <h2>Summary</h2>
-                                    <p>${resumeData.summary}</p>
-                                    <h2>Experience</h2>
-                                    ${resumeData.experiences.map(exp => `
-                                        <div>
-                                            <h3>${exp.exp_title}</h3>
-                                            <p><strong>${exp.exp_organization}</strong> | ${exp.exp_location} | ${exp.exp_start_date} - ${exp.exp_end_date}</p>
-                                            <ul><li>${exp.exp_description.replace(/\n/g, "</li><li>")}</li></ul>
-                                        </div>
-                                    `).join('')}
-                                    <h2>Education</h2>
-                                    ${resumeData.educations.map(edu => `
-                                        <div>
-                                            <h3>${edu.edu_degree}</h3>
-                                            <p><strong>${edu.edu_school}</strong> | ${edu.edu_city} | ${edu.edu_start_date} - ${edu.edu_graduation_date}</p>
-                                            <ul><li>${edu.edu_description.replace(/\n/g, "</li><li>")}</li></ul>
-                                        </div>
-                                    `).join('')}
-                                    <h2>Skills</h2>
-                                    <ul>${resumeData.skills.map(skill => `<li>${skill.skill}</li>`).join('')}</ul>
-                                </div>
-                            `;
-            } else if (template === 'creative'){
-                html += `
+                    <ul>${skills.map(skill => `<li>${skill.skill || ''}</li>`).join('')}</ul>
+                </div>
+            `;
+        } else if (template === 'creative') {
+             html += `
                     <div style="background-color: #ff7f50; color: white; padding: 20px; text-align: center;">
-                        <h1>${resumeData.firstname} ${resumeData.middlename} ${resumeData.lastname}</h1>
-                        <p>${resumeData.designation}</p>
+                        <h1>${firstname} ${middlename} ${lastname}</h1>
+                        <p>${designation}</p>
                     </div>
                     <div style="padding: 20px;">
-                        <p style="text-align: center;">${resumeData.address} | ${resumeData.phoneno} | ${resumeData.email}</p>
+                        <p style="text-align: center;">${address} | ${phoneno} | ${email}</p>
                         <h2>Summary</h2>
-                        <p>${resumeData.summary}</p>
+                        <p>${summary}</p>
                         <h2>Experience</h2>
-                        ${resumeData.experiences.map(exp => `
+                        ${experiences.map(exp => `
                             <div>
-                                <h3>${exp.exp_title}</h3>
-                                <p><strong>${exp.exp_organization}</strong> | ${exp.exp_location} | ${exp.exp_start_date} - ${exp.exp_end_date}</p>
-                                <ul><li>${exp.exp_description.replace(/\n/g, "</li><li>")}</li></ul>
+                                <h3>${exp.exp_title || ''}</h3>
+                                <p><strong>${exp.exp_organization || ''}</strong> | ${exp.exp_location || ''} | ${exp.exp_start_date || ''} - ${exp.exp_end_date || ''}</p>
+                                <ul><li>${(exp.exp_description || '').replace(/\n/g, "</li><li>")}</li></ul>
                             </div>
                         `).join('')}
                         <h2>Education</h2>
-                        ${resumeData.educations.map(edu => `
+                        ${educations.map(edu => `
                             <div>
-                                <h3>${edu.edu_degree}</h3>
-                                <p><strong>${edu.edu_school}</strong> | ${edu.edu_city} | ${edu.edu_start_date} - ${edu.edu_graduation_date}</p>
-                                <ul><li>${edu.edu_description.replace(/\n/g, "</li><li>")}</li></ul>
+                                <h3>${edu.edu_degree || ''}</h3>
+                                <p><strong>${edu.edu_school || ''}</strong> | ${edu.edu_city || ''} | ${edu.edu_start_date || ''} - ${edu.edu_graduation_date || ''}</p>
+                                <ul><li>${(edu.edu_description || '').replace(/\n/g, "</li><li>")}</li></ul>
                             </div>
                         `).join('')}
                         <h2>Skills</h2>
-                        <ul>${resumeData.skills.map(skill => `<li>${skill.skill}</li>`).join('')}</ul>
+                        <ul>${skills.map(skill => `<li>${skill.skill || ''}</li>`).join('')}</ul>
                     </div>
                 `;
-            } else if (template === 'fresh'){
-                html += `
+        } else if (template === 'fresh') {
+             html += `
                     <div style="border: 2px solid #4CAF50; padding: 20px;">
-                        <h1 style="color: #4CAF50;">${resumeData.firstname} ${resumeData.middlename} ${resumeData.lastname}</h1>
-                        <p>${resumeData.designation}</p>
-                        <p>${resumeData.address} | ${resumeData.phoneno} | ${resumeData.email}</p>
+                        <h1 style="color: #4CAF50;">${firstname} ${middlename} ${lastname}</h1>
+                        <p>${designation}</p>
+                        <p>${address} | ${phoneno} | ${email}</p>
                         <h2>Summary</h2>
-                        <p>${resumeData.summary}</p>
-                        <h2>Experience</h2>                                        ${resumeData.experiences.map(exp => `
-                                            <div>
-                                                <h3>${exp.exp_title}</h3>
-                                                <p><strong>${exp.exp_organization}</strong> | ${exp.exp_location} | ${exp.exp_start_date} - ${exp.exp_end_date}</p>
-                                                <ul><li>${exp.exp_description.replace(/\n/g, "</li><li>")}</li></ul>
-                                            </div>
-                                        `).join('')}
-                                        <h2>Education</h2>
-                                        ${resumeData.educations.map(edu => `
-                                            <div>
-                                                <h3>${edu.edu_degree}</h3>
-                                                <p><strong>${edu.edu_school}</strong> | ${edu.edu_city} | ${edu.edu_start_date} - ${edu.edu_graduation_date}</p>
-                                                <ul><li>${edu.edu_description.replace(/\n/g, "</li><li>")}</li></ul>
-                                            </div>
-                                        `).join('')}
-                                        <h2>Skills</h2>
-                                        <ul>${resumeData.skills.map(skill => `<li>${skill.skill}</li>`).join('')}</ul>
-                                    </div>
-                                `;
-                            }        } else {
-            html += `<p>No resume data available. Please fill out the form.</p>`;
+                        <p>${summary}</p>
+                        <h2>Experience</h2>
+                        ${experiences.map(exp => `
+                            <div>
+                                <h3>${exp.exp_title || ''}</h3>
+                                <p><strong>${exp.exp_organization || ''}</strong> | ${exp.exp_location || ''} | ${exp.exp_start_date || ''} - ${exp.exp_end_date || ''}</p>
+                                <ul><li>${(exp.exp_description || '').replace(/\n/g, "</li><li>")}</li></ul>
+                            </div>
+                        `).join('')}
+                        <h2>Education</h2>
+                        ${educations.map(edu => `
+                            <div>
+                                <h3>${edu.edu_degree || ''}</h3>
+                                <p><strong>${edu.edu_school || ''}</strong> | ${edu.edu_city || ''} | ${edu.edu_start_date || ''} - ${edu.edu_graduation_date || ''}</p>
+                                <ul><li>${(edu.edu_description || '').replace(/\n/g, "</li><li>")}</li></ul>
+                            </div>
+                        `).join('')}
+                        <h2>Skills</h2>
+                        <ul>${skills.map(skill => `<li>${skill.skill || ''}</li>`).join('')}</ul>
+                    </div>
+                `;
+        }
+        // Add similar conditions for other templates (cubic, diamond, glimmer, enfold, valera, concept, cascade)
+        // Make sure to add the safety checks (e.g., experiences.map(...) etc.) for each template
+        else {
+             // Default fallback or structure if needed
+             html += `<p>Template preview not fully configured for "${template}".</p>`;
         }
 
-        html += `</div>`;
+
+        html += `</div>`; // Close the main template div
         return html;
     }
 
-    // This is the main page
+    // This is the main page (resume.html) or wherever template selection happens
     thumbnails.forEach(thumbnail => {
         const template = thumbnail.dataset.template;
         const iframe = document.createElement('iframe');
-        iframe.src = `templates.html?template=${template}`; // Still use templates.html for iframe content
+        iframe.src = `templates.html?template=${template}`; // Use templates.html for iframe content
+        // Clear existing iframe if any, then append the new one
+        thumbnail.innerHTML = '';
         thumbnail.appendChild(iframe);
 
         thumbnail.addEventListener('click', () => {
@@ -457,60 +500,91 @@ function initializeTemplateSelection() {
     });
 
     function updatePreview(template) {
+        // Ensure previewPanel exists before trying to update it
+        if (!previewPanel) return;
+
         previewPanel.classList.add('fade-out');
         setTimeout(() => {
+            // Regenerate HTML with safety checks
             previewPanel.innerHTML = generateResumeHTML(template);
             previewPanel.classList.remove('fade-out');
             previewPanel.classList.add('fade-in');
-        }, 500);
+        }, 500); // Match timeout with CSS transition duration
     }
 
-    // Initial preview
-    updatePreview('harvard');
-    document.querySelector('.template-selection-section .thumbnail[data-template="harvard"]').classList.add('active');
+    // Initial preview setup
+    const initialTemplate = 'harvard'; // Or your desired default
+    updatePreview(initialTemplate);
+    const initialThumbnail = document.querySelector(`.template-selection-section .thumbnail[data-template="${initialTemplate}"]`);
+    if (initialThumbnail) {
+        initialThumbnail.classList.add('active');
+    }
 
     // Download functionality
-    document.getElementById('download-pdf').addEventListener('click', () => {
-        const element = previewPanel.firstChild;
-        html2pdf(element);
-    });
+    const downloadPdfButton = document.getElementById('download-pdf');
+    if (downloadPdfButton) {
+        downloadPdfButton.addEventListener('click', () => {
+            const element = previewPanel.firstChild; // Assumes the template div is the first child
+            if (element && typeof html2pdf === 'function') {
+                // Add options for better PDF generation if needed
+                 const opt = {
+                    margin:       0.5,
+                    filename:     'resume.pdf',
+                    image:        { type: 'jpeg', quality: 0.98 },
+                    html2canvas:  { scale: 2 },
+                    jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+                 };
+                html2pdf().from(element).set(opt).save();
+            } else {
+                console.error("PDF generation failed. Element not found or html2pdf library not loaded.");
+            }
+        });
+    }
 
-    document.getElementById('print-cv').addEventListener('click', () => {
-        window.print();
-    });
+     // Print functionality
+    const printCvButton = document.getElementById('print-cv');
+    if (printCvButton) {
+        printCvButton.addEventListener('click', () => {
+            window.print();
+        });
+    }
 
+    // Suggestions Modal Logic
     const suggestionsModal = document.getElementById('suggestions-modal');
     const getSuggestionsBtn = document.getElementById('get-suggestions');
-    const closeBtn = document.querySelector('.close-button');
+    const closeBtn = suggestionsModal ? suggestionsModal.querySelector('.close-button') : null;
 
-    getSuggestionsBtn.addEventListener('click', () => {
-        const suggestions = JSON.parse(localStorage.getItem('resumeSuggestions'));
-        const suggestionsContent = document.getElementById('suggestions-content');
-        suggestionsContent.innerHTML = '';
-        if (suggestions && suggestions.length > 0) {
-            const ul = document.createElement('ul');
-            suggestions.forEach(suggestion => {
-                const li = document.createElement('li');
-                li.textContent = suggestion;
-                ul.appendChild(li);
-            });
-            suggestionsContent.appendChild(ul);
-        } else {
-            suggestionsContent.innerHTML = '<p>No suggestions at the moment. Your resume looks great!</p>';
-        }
-        suggestionsModal.style.display = 'block';
-    });
+    if (getSuggestionsBtn && suggestionsModal && closeBtn) {
+        getSuggestionsBtn.addEventListener('click', () => {
+            const suggestions = JSON.parse(localStorage.getItem('resumeSuggestions') || '[]'); // Default to empty array
+            const suggestionsContent = document.getElementById('suggestions-content');
+            if (suggestionsContent) {
+                 suggestionsContent.innerHTML = ''; // Clear previous suggestions
+                if (suggestions && suggestions.length > 0) {
+                    const ul = document.createElement('ul');
+                    suggestions.forEach(suggestion => {
+                        const li = document.createElement('li');
+                        li.textContent = suggestion;
+                        ul.appendChild(li);
+                    });
+                    suggestionsContent.appendChild(ul);
+                } else {
+                    suggestionsContent.innerHTML = '<p>No suggestions at the moment. Your resume looks great!</p>';
+                }
+                suggestionsModal.style.display = 'block';
+            }
+        });
 
-    closeBtn.addEventListener('click', () => {
-        suggestionsModal.style.display = 'none';
-    });
-
-    window.addEventListener('click', (event) => {
-        if (event.target == suggestionsModal) {
+        closeBtn.addEventListener('click', () => {
             suggestionsModal.style.display = 'none';
-        }
-    });
-// --- End of templates.js content ---
+        });
+
+        window.addEventListener('click', (event) => {
+            if (event.target == suggestionsModal) {
+                suggestionsModal.style.display = 'none';
+            }
+        });
+    }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
