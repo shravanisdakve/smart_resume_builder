@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Resume Page</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<nav class = "navbar bg-white">
+<div class="container">
+<div class = "navbar-content">
+<div class = "brand-and-toggler">
+<a href = "index.html" class = "navbar-brand">
+<img src = "assets/images/curriculum-vitae.png" alt = "" class = "navbar-brand-icon">
+<span class = "navbar-brand-text">build <span>resume.</span>
+</a>
+<div class="navbar-actions">
+<a href="index.html" class="btn btn-secondary">Home</a>
+<a href="dashboard.php" class="btn btn-secondary">Dashboard</a>
+<a href="logout.php" class="btn btn-primary">Logout</a>
+</div>
+<button type = "button" class = "navbar-toggler-btn" onclick="toggleMobileMenu()">
+<div class = "bars">
+<div class = "bar"></div>
+<div class = "bar"></div>
+<div class = "bar"></div>
+</div>
+</button>
+</div>
+<div class="mobile-menu" id="mobileMenu">
+<div class="mobile-menu-content">
+<a href="index.html" class="mobile-menu-item">Home</a>
+<a href="login.php" class="mobile-menu-item">Login</a>
+<a href="register.php" class="mobile-menu-item">Sign Up</a>
+</div>
+</div>
+</div>
+</div>
+</nav>
+
+<section id = "about-sc" class = "">
+<div class = "container">
+<div class = "about-cnt">
+<div class="resume-header">
+    <h2 class="resume-title">Build Your Professional Resume</h2>
+    <p class="resume-subtitle">Fill in your details below and see your resume update in real-time</p>
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <span class="progress-text" id="progressText">0% Complete</span>
+    </div>
+</div>
+<div class="multi-step-form">
+    <div class="progress-bar-container">
+        <div class="progress-bar-step active">Personal</div>
+        <div class="progress-bar-step">Achievements</div>
+        <div class="progress-bar-step">Experience</div>
+        <div class="progress-bar-step">Education</div>
+        <div class="progress-bar-step">Projects</div>
+        <div class="progress-bar-step">Skills</div>
+    </div>
+    <form action="" class="cv-form" id = "cv-form">
+        <div style="text-align:right;margin-bottom:10px">
+            <button type="button" id="save-server" class="btn btn-primary">Save to Server</button>
+        </div>
+        <div class="form-step active">
+            <div class = "cv-form-blk">
+                <div class = "cv-form-row-title">
+                    <h3>about section</h3>
+                </div>
+                <div class = "cv-form-row cv-form-row-about">
+                    <div class = "cols-3">
+                        <div class = "form-elem">
+                            <label for = "" class = "form-label">First Name <span class="text-danger">*</span></label>
+                            <input name = "firstname" type = "text" class = "form-control firstname" id = "" onkeyup="generateCV()" placeholder="e.g. John" required>
+                            <span class="form-text"></span>
+                        </div>
+                        <div class = "form-elem">
+                            <label for = "" class = "form-label">Middle Name <span class = "opt-text">(optional)</span></label>
+                            <input name = "middlename" type = "text" class = "form-control middlename" id = "" onkeyup="generateCV()" placeholder="e.g. Herbert">
+                            <span class="form-text"></span>
+                        </div>
+                        <div class = "form-elem">
+                            <label for = "" class = "form-label">Last Name <span class="text-danger">*</span></label>
+                            <input name = "lastname" type = "text" class = "form-control lastname" id = "" onkeyup="generateCV()" placeholder="e.g. Doe" required>
+                            <span class="form-text"></span>
+                        </div>
+                    </div>
+
+                    <div class="cols-3">
+                        <div class = "form-elem">
+                            <label for = "" class = "form-label">Your Image</label>
+                            <input name = "image" type = "file" class = "form-control image" id = "" accept = "image/*" onchange="previewImage()">
+                        </div>
+                        <div class = "form-elem">
+                            <label for = "" class = "form-label">Designation <span class="text-danger">*</span></label>
+                            <input name = "designation" type = "text" class = "form-control designation" id = "" onkeyup="generateCV()" placeholder="e.g. Sr.Accountants" required>
+                            <span class="form-text"></span>
+                        </div>
+                        <div class = "form-elem">
+                            <label for = "" class = "form-label">Address <span class="text-danger">*</span></label>
+                            <input name = "address" type = "text" class = "form-control address" id = "" onkeyup="generateCV()" placeholder="e.g. Lake Street-23" required>
+                            <span class="form-text"></span>
+                        </div>
+                    </div>
+
+                    <div class = "cols-3">
+                        <div class = "form-elem">
+                            <label for = "" class = "form-label">Email <span class="text-danger">*</span></label>
+                            <input name = "email" type = "text" class = "form-control email" id = "" onkeyup="generateCV()" placeholder="e.g. johndoe@gmail.com" required>
+                            <span class="form-text"></span>
+                        </div>
+                        <div class = "form-elem">
+                            <label for = "" class = "form-label">Phone No: <span class="text-danger">*</span></label>
+                            <input name = "phoneno" type = "text" class = "form-control phoneno" id = "" onkeyup="generateCV()" placeholder="e.g. 456-768-798, 567.654.002" required>
+                            <span class="form-text"></span>
+                        </div>
+                        <div class = "form-elem">
+                            <label for = "" class = "form-label">Summary <span class="text-danger">*</span></label>
+                            <input name = "summary" type = "text" class = "form-control summary" id = "" onkeyup="generateCV()" placeholder="e.g. Doe" required>
+                            <span class="form-text"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-step">
+            <div class="cv-form-blk">
+                <div class = "cv-form-row-title">
+                    <h3>achievements</h3>
+                </div>
+
+                <div class = "row-separator repeater">
+                    <div class = "repeater" data-repeater-list = "group-a">
+                        <div data-repeater-item>
+                            <div class = "cv-form-row cv-form-row-achievement">
+                                <div class = "cols-2">
+                                    <div class = "form-elem">
+                                        <label for = "" class = "form-label">Title <span class="text-danger">*</span></label>
+                                        <input name = "achieve_title" type = "text" class = "form-control achieve_title" id = "" onkeyup="generateCV()" placeholder="e.g. johndoe@gmail.com" required>
+                                        <span class="form-text"></span>
+                                    </div>
+                                    <div class = "form-elem">
+                                        <label for = "" class = "form-label">Description <span class="text-danger">*</span></label>
+                                        <input name = "achieve_description" type = "text" class = "form-control achieve_description" id = "" onkeyup="generateCV()" placeholder="e.g. johndoe@gmail.com" required>
+                                        <span class="form-text"></span>
+                                    </div>
+                                </div>
+                                <button data-repeater-delete type = "button" class = "repeater-remove-btn">-</button>
+                            </div>
+                        </div>
+                    </div>
+                    <button type = "button" data-repeater-create value = "Add" class = "repeater-add-btn">+</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-step">
+            <div class="cv-form-blk">
+                <div class = "cv-form-row-title">
+                    <h3>experience</h3>
+                </div>
+
+                <div class = "row-separator repeater">
+                    <div class = "repeater" data-repeater-list = "group-b">
+                        <div data-repeater-item>
+                            <div class = "cv-form-row cv-form-row-experience">
+                                <div class = "cols-3">
+                                    <div class = "form-elem">
+                                        <label for = "" class = "form-label">Title <span class="text-danger">*</span></label>
+                                        <input name = "exp_title" type = "text" class = "form-control exp_title" id = "" onkeyup="generateCV()" required>
+                                        <span class="form-text"></span>
+                                    </div>
+                                    <div class = "form-elem">
+                                        <label for = "" class = "form-label">Company / Organization <span class="text-danger">*</span></label>
+                                        <input name = "exp_organization" type = "text" class = "form-control exp_organization" id = "" onkeyup="generateCV()" required>
+                                        <span class="form-text"></span>
+                                    </div>
+                                    <div class = "form-elem">
+                                        <label for = "" class = "form-label">Location <span class="text-danger">*</span></label>
+                                        <input name = "exp_location" type = "text" class = "form-control exp_location" id = "" onkeyup="generateCV()" required>
+                                        <span class="form-text"></span>
+                                    </div>
+                                </div>
+
+                                <div class = "cols-3">
+                                    <div class = "form-elem">
+                                        <label for = "" class = "form-label">Start Date <span class="text-danger">*</span></label>
+                                        <input name = "exp_start_date" type = "date" class = "form-control exp_start_date" id = "" onkeyup="generateCV()" required>
+                                        <span class="form-text"></span>
+                                    </div>
+                                    <div class = "form-elem">
+                                        <label for = "" class = "form-label">End Date <span class="text-danger">*</span></label>
+                                        <input name = "exp_end_date" type = "date" class = "form-control exp_end_date" id = "" onkeyup="generateCV()" required>
+                                        <span class="form-text"></span>
+                                    </div>
+                                    <div class = "form-elem">
+                                        <label for = "" class = "form-label">Description <span class="text-danger">*</span></label>
+                                        <input name = "exp_description" type = "text" class = "form-control exp_description" id = "" onkeyup="generateCV()" required>
+                                        <span class="form-text"></span>
+                                    </div>
+                                </div>
+
+                                <button data-repeater-delete type = "button" class = "repeater-remove-btn">-</button>
+                            </div>
+                        </div>
+                    </div>
+                    <button type = "button" data-repeater-create value = "Add" class = "repeater-add-btn">+</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-step">
+            <div class="cv-form-blk">
+                <div class = "cv-form-row-title">
+                    <h3>education</h3>
+                </div>
+
+                <div class = "row-separator repeater">
+                    <div class = "repeater" data-repeater-list = "group-c">
+                        <div data-repeater-item>
+                            <div class = "cv-form-row cv-form-row-experience">
+                                <div class = "cols-3">
+                                    <div class = "form-elem">
+                                        <label for = "" class = "form-label">School <span class="text-danger">*</span></label>
+                                        <input name = "edu_school" type = "text" class = "form-control edu_school" id = "" onkeyup="generateCV()" required>
+                                        <span class="form-text"></span>
+                                    </div>
+                                    <div class = "form-elem">
+                                        <label for = "" class = "form-label">Degree <span class="text-danger">*</span></label>
+                                        <input name = "edu_degree" type = "text" class = "form-control edu_degree" id = "" onkeyup="generateCV()" required>
+                                        <span class="form-text"></span>
+                                    </div>
+                                    <div class = "form-elem">
+                                        <label for = "" class = "form-label">City <span class="text-danger">*</span></label>
+                                        <input name = "edu_city" type = "text" class = "form-control edu_city" id = "" onkeyup="generateCV()" required>
+                                        <span class="form-text"></span>
+                                    </div>
+                                </div>
+
+                                <div class = "cols-3">
+                                    <div class = "form-elem">
+                                        <label for = "" class = "form-label">Start Date <span class="text-danger">*</span></label>
+                                        <input name = "edu_start_date" type = "date" class = "form-control edu_start_date" id = "" onkeyup="generateCV()" required>
+                                        <span class="form-text"></span>
+                                    </div>
+                                    <div class = "form-elem">
+                                        <label for = "" class = "form-label">End Date <span class="text-danger">*</span></label>
+                                        <input name = "edu_graduation_date" type = "date" class = "form-control edu_graduation_date" id = "" onkeyup="generateCV()" required>
+                                        <span class="form-text"></span>
+                                    </div>
+                                    <div class = "form-elem">
+                                        <label for = "" class = "form-label">Description <span class="text-danger">*</span></label>
+                                        <input name = "edu_description" type = "text" class = "form-control edu_description" id = "" onkeyup="generateCV()" required>
+                                        <span class="form-text"></span>
+                                    </div>
+                                </div>
+
+                                <button data-repeater-delete type = "button" class = "repeater-remove-btn">-</button>
+                            </div>
+                        </div>
+                    </div>
+                    <button type = "button" data-repeater-create value = "Add" class = "repeater-add-btn">+</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-step">
+            <div class="cv-form-blk">
+                <div class = "cv-form-row-title">
+                    <h3>projects</h3>
+                </div>
+
+                <div class = "row-separator repeater">
+                    <div class = "repeater" data-repeater-list = "group-d">
+                        <div data-repeater-item>
+                            <div class = "cv-form-row cv-form-row-experience">
+                                <div class = "cols-3">
+                                    <div class = "form-elem">
+                                        <label for = "" class = "form-label">Project Name <span class="text-danger">*</span></label>
+                                        <input name = "proj_title" type = "text" class = "form-control proj_title" id = "" onkeyup="generateCV()" required>
+                                        <span class="form-text"></span>
+                                    </div>
+                                    <div class = "form-elem">
+                                        <label for = "" class = "form-label">Project link <span class="text-danger">*</span></label>
+                                        <input name = "proj_link" type = "text" class = "form-control proj_link" id = "" onkeyup="generateCV()" required>
+                                        <span class="form-text"></span>
+                                    </div>
+                                    <div class = "form-elem">
+                                        <label for = "" class = "form-label">Description <span class="text-danger">*</span></label>
+                                        <input name = "proj_description" type = "text" class = "form-control proj_description" id = "" onkeyup="generateCV()" required>
+                                        <span class="form-text"></span>
+                                    </div>
+                                </div>
+                                <button data-repeater-delete type = "button" class = "repeater-remove-btn">-</button>
+                            </div>
+                        </div>
+                    </div>
+                    <button type = "button" data-repeater-create value = "Add" class = "repeater-add-btn">+</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-step">
+            <div class="cv-form-blk">
+                <div class = "cv-form-row-title">
+                    <h3>Skills</h3>
+                </div>
+
+                <div class="row-separator repeater">
+                    <div class="repeater" data-repeater-list="group-e">
+                        <div data-repeater-item>
+                            <div class="cv-form-row cv-form-row-skills">
+                                <div class="form-elem">
+                                    <label for="" class="form-label">Skill <span class="text-danger">*</span></label>
+
+                                    <select name="skill" class="form-control skill" onchange="generateCV()" required>
+                                        <option value="">Select Skill</option>
+                                        <option value="Programming">Programming</option>
+                                        <option value="Web Development">Web Development</option>
+                                        <option value="Graphic Design">Graphic Design</option>
+                                        <!-- Add more options as needed -->
+                                    </select>
+                                    <span class="form-text"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" data-repeater-create value="Add" class="repeater-add-btn">+</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="form-navigation-buttons">
+        <button type="button" class="prev-btn">Previous</button>
+        <button type="button" class="next-btn">Next</button>
+    </div>
+</div>
+
+<div class="template-selection-section">
+    <h2 class="text-center">Choose Your Template</h2>
+    
+    <div class="template-category">
+        <h3>Professional Templates</h3>
+        <div class="template-thumbnails">
+            <div class="thumbnail" data-template="harvard">
+                <p class="template-description">Classic and formal, ideal for traditional industries.</p>
+            </div>
+            <div class="thumbnail" data-template="swiss">
+                <p class="template-description">Clean and structured, perfect for corporate roles.</p>
+            </div>
+            <div class="thumbnail" data-template="pinnacle">
+                <p class="template-description">Elegant and sophisticated, suitable for senior positions.</p>
+            </div>
+            <div class="thumbnail" data-template="elegant">
+                <p class="template-description">Refined and polished, perfect for a distinguished look.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="template-category">
+        <h3>Modern Templates</h3>
+        <div class="template-thumbnails">
+            <div class="thumbnail" data-template="cubic">
+                <p class="template-description">Bold and contemporary, great for creative fields.</p>
+            </div>
+            <div class="thumbnail" data-template="diamond">
+                <p class="template-description">Stylish and unique, stands out from the crowd.</p>
+            </div>
+            <div class="thumbnail" data-template="glimmer">
+                <p class="template-description">Sleek and minimalist, highlights key achievements.</p>
+            </div>
+            <div class="thumbnail" data-template="creative">
+                <p class="template-description">Innovative and artistic, designed for visual impact.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="template-category">
+        <h3>Creative Templates</h3>
+        <div class="template-thumbnails">
+            <div class="thumbnail" data-template="enfold">
+                <p class="template-description">Dynamic and artistic, best for design and media roles.</p>
+            </div>
+            <div class="thumbnail" data-template="valera">
+                <p class="template-description">Playful and engaging, suitable for innovative industries.</p>
+            </div>
+            <div class="thumbnail" data-template="concept">
+                <p class="template-description">Innovative and fresh, ideal for startups and tech.</p>
+            </div>
+            <div class="thumbnail" data-template="cascade">
+                <p class="template-description">Flowing and elegant, perfect for showcasing a diverse skill set.</p>
+            </div>
+            <div class="thumbnail" data-template="fresh">
+                <p class="template-description">Vibrant and modern, for those who want to make a statement.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="action-buttons">
+        <button class="btn btn-primary" id="print-cv">Print CV</button>
+        <button class="btn btn-primary" id="download-pdf">Download as PDF</button>
+        <button class="btn btn-info" id="get-suggestions">Get Suggestions</button>
+    </div>
+</div>
+</div>
+</div>
+
+<section id = "preview-sc" class = "print_area">
+<div class = "container">
+<div class = "preview-cnt">
+<div class = "preview-cnt-l bg-green text-white">
+<div class = "preview-blk">
+<div class = "preview-image">
+<img src = "" alt = "" id = "image_dsp"> 
+</div>
+<div class = "preview-item preview-item-name">
+<span class = "preview-item-val fw-6" id = "fullname_dsp"></span>
+</div>
+<div class = "preview-item">
+<span class = "preview-item-val text-uppercase fw-6 ls-1" id = "designation_dsp"></span>
+</div>
+</div>
+
+<div class = "preview-blk">
+<div class = "preview-blk-title">
+<h3>about</h3>
+</div>
+<div class = "preview-blk-list">
+<div class = "preview-item">
+<span class = "preview-item-val" id = "phoneno_dsp"></span>
+</div>
+<div class = "preview-item">
+<span class = "preview-item-val" id = "email_dsp"></span>
+</div>
+<div class = "preview-item">
+<span class = "preview-item-val" id = "address_dsp"></span>
+</div>
+<div class = "preview-item">
+<span class = "preview-item-val" id = "summary_dsp"></span>
+</div>
+</div>
+</div>
+
+<div class = "preview-blk">
+<div class = "preview-blk-title">
+<h3>skills</h3>
+</div>
+<div class = "skills-items preview-blk-list" id = "skills_dsp">
+<!-- skills list here -->
+</div>
+</div>
+</div>
+
+<div class = "preview-cnt-r bg-white">
+<div class = "preview-blk">
+<div class = "preview-blk-title">
+<h3>Achievements</h3>
+</div>
+<div class = "achievements-items preview-blk-list" id = "achievements_dsp"></div>
+</div>
+
+<div class = "preview-blk">
+<div class = "preview-blk-title">
+<h3>education</h3>
+</div>
+<div class = "educations-items preview-blk-list" id = "educations_dsp"></div>
+</div>
+
+<div class = "preview-blk">
+<div class = "preview-blk-title">
+<h3>experience</h3>
+</div>
+<div class = "experiences-items preview-blk-list" id = "experiences_dsp"></div>
+</div>
+
+<div class = "preview-blk">
+<div class = "preview-blk-title">
+<h3>projects</h3>
+</div>
+<div class = "projects-items preview-blk-list" id = "projects_dsp"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+
+
+    
+
+<!-- jquery cdn -->
+<script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+<!-- jquery repeater cdn -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.repeater/1.2.1/jquery.repeater.js" integrity="sha512-bZAXvpVfp1+9AUHQzekEZaXclsgSlAeEnMJ6LfFAvjqYUVZfcuVXeQoN5LhD7Uw0Jy4NCY9q3kbdEXbwhZUmUQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- custom js -->
+<script src = "assets/js/script.js"></script>
+<!-- app js -->
+<script src="assets/js/app.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBALEAdp2B5BRTsha4YhzNUkuDxWQ/gC6iI0ZHZdDLA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+<script src="https://unpkg.com/docx@7.3.0/build/index.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
+<script>
+
+
+// auto save resume draft
+function saveResume(){
+    const formData = new FormData(document.getElementById('cv-form'));
+    const resumeData = {};
+    
+    for (let [key, value] of formData.entries()) {
+        resumeData[key] = value;
+    }
+    
+    localStorage.setItem('resumeDraft', JSON.stringify(resumeData));
+    console.log('Resume auto-saved to localStorage:', resumeData);
+
+    const saveBtn = document.querySelector('.save-btn');
+    if(saveBtn){
+        saveBtn.innerHTML = '<i class="save-icon">✅</i> Saved';
+        saveBtn.disabled = true;
+    }
+}
+
+// load saved draft on page load
+function loadResumeDraft(){
+    const savedData = localStorage.getItem('resumeDraft');
+    if (savedData) {
+        try {
+            const resumeData = JSON.parse(savedData);
+            
+            // Populate form fields
+            Object.keys(resumeData).forEach(key => {
+                const element = document.querySelector(`[name="${key}"]`);
+                if (element) {
+                    element.value = resumeData[key];
+                }
+            });
+            
+            // Generate CV with loaded data
+            if (typeof generateCV === 'function') {
+                generateCV();
+            }
+            
+            console.log('Resume draft loaded from localStorage');
+        } catch (error) {
+            console.error('Error loading resume draft:', error);
+        }
+    }
+}
+
+// Load draft when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    loadResumeDraft();
+    const form = document.getElementById('cv-form');
+    form.addEventListener('input', saveResume);
+});
+
+// Progress tracking
+function updateProgress() {
+    const form = document.getElementById('cv-form');
+    const requiredFields = form.querySelectorAll('input[required], select[required], textarea[required]');
+    if (requiredFields.length === 0) {
+        progress = 0;
+        return;
+    }
+    let filledFields = 0;
+    
+    requiredFields.forEach(field => {
+        if (field.value.trim() !== '') {
+            filledFields++;
+        }
+    });
+    
+    const progress = Math.round((filledFields / requiredFields.length) * 100);
+    const progressFill = document.getElementById('progressFill');
+    const progressText = document.getElementById('progressText');
+    
+    if (progressFill && progressText) {
+        progressFill.style.width = progress + '%';
+        progressText.textContent = progress + '% Complete';
+        
+        if (progress === 100) {
+            progressText.textContent = '🎉 Resume Complete!';
+            progressFill.style.background = 'linear-gradient(135deg, #28a745 0%, #20c997 100%)';
+        }
+    }
+}
+
+// Add progress tracking to all form inputs
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('cv-form');
+    const inputs = form.querySelectorAll('input, select, textarea');
+    
+    inputs.forEach(input => {
+        input.addEventListener('input', updateProgress);
+        input.addEventListener('change', updateProgress);
+    });
+    
+    // Initial progress calculation
+    updateProgress();
+});
+
+// Mobile menu toggle functionality
+function toggleMobileMenu() {
+    const mobileMenu = document.getElementById('mobileMenu');
+    const hamburger = document.querySelector('.navbar-toggler-btn');
+    
+    if (mobileMenu.classList.contains('active')) {
+        mobileMenu.classList.remove('active');
+        hamburger.classList.remove('active');
+    } else {
+        mobileMenu.classList.add('active');
+        hamburger.classList.add('active');
+    }
+}
+
+// Close mobile menu when clicking outside
+document.addEventListener('click', function(event) {
+    const mobileMenu = document.getElementById('mobileMenu');
+    const hamburger = document.querySelector('.navbar-toggler-btn');
+    
+    if (!mobileMenu.contains(event.target) && !hamburger.contains(event.target)) {
+        mobileMenu.classList.remove('active');
+        hamburger.classList.remove('active');
+    }
+});
+</script>
+</div>
+</section>
+
+<div id="suggestions-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <div id="suggestions-content"></div>
+    </div>
+</div>
+
+<!-- jquery cdn -->
+<script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+<!-- jquery repeater cdn -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.repeater/1.2.1/jquery.repeater.js" integrity="sha512-bZAXvpVfp1+9AUHQzekEZaXclsgSlAeEnMJ6LfFAvjqYUVZfcuVXeQoN5LhD7Uw0Jy4NCY9q3kbdEXbwhZUmUQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- custom js -->
+<script src = "assets/js/script.js"></script>
+<!-- app js -->
+<script src="assets/js/app.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBALEAdp2B5BRTsha4YhzNUkuDxWQ/gC6iI0ZHZdDLA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+<script src="https://unpkg.com/docx@7.3.0/build/index.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
+<script>
+
+
+// auto save resume draft
+function saveResume(){
+    const formData = new FormData(document.getElementById('cv-form'));
+    const resumeData = {};
+    
+    for (let [key, value] of formData.entries()) {
+        resumeData[key] = value;
+    }
+    
+    localStorage.setItem('resumeDraft', JSON.stringify(resumeData));
+    console.log('Resume auto-saved to localStorage:', resumeData);
+
+    const saveBtn = document.querySelector('.save-btn');
+    if(saveBtn){
+        saveBtn.innerHTML = '<i class="save-icon">✅</i> Saved';
+        saveBtn.disabled = true;
+    }
+}
+
+// load saved draft on page load
+function loadResumeDraft(){
+    const savedData = localStorage.getItem('resumeDraft');
+    if (savedData) {
+        try {
+            const resumeData = JSON.parse(savedData);
+            
+            // Populate form fields
+            Object.keys(resumeData).forEach(key => {
+                const element = document.querySelector(`[name="${key}"]`);
+                if (element) {
+                    element.value = resumeData[key];
+                }
+            });
+            
+            // Generate CV with loaded data
+            if (typeof generateCV === 'function') {
+                generateCV();
+            }
+            
+            console.log('Resume draft loaded from localStorage');
+        } catch (error) {
+            console.error('Error loading resume draft:', error);
+        }
+    }
+}
+
+// Load draft when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    loadResumeDraft();
+    const form = document.getElementById('cv-form');
+    form.addEventListener('input', saveResume);
+});
+
+// Progress tracking
+function updateProgress() {
+    const form = document.getElementById('cv-form');
+    const requiredFields = form.querySelectorAll('input[required], select[required], textarea[required]');
+    if (requiredFields.length === 0) {
+        progress = 0;
+        return;
+    }
+    let filledFields = 0;
+    
+    requiredFields.forEach(field => {
+        if (field.value.trim() !== '') {
+            filledFields++;
+        }
+    });
+    
+    const progress = Math.round((filledFields / requiredFields.length) * 100);
+    const progressFill = document.getElementById('progressFill');
+    const progressText = document.getElementById('progressText');
+    
+    if (progressFill && progressText) {
+        progressFill.style.width = progress + '%';
+        progressText.textContent = progress + '% Complete';
+        
+        if (progress === 100) {
+            progressText.textContent = '🎉 Resume Complete!';
+            progressFill.style.background = 'linear-gradient(135deg, #28a745 0%, #20c997 100%)';
+        }
+    }
+}
+
+// Add progress tracking to all form inputs
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('cv-form');
+    const inputs = form.querySelectorAll('input, select, textarea');
+    
+    inputs.forEach(input => {
+        input.addEventListener('input', updateProgress);
+        input.addEventListener('change', updateProgress);
+    });
+    
+    // Initial progress calculation
+    updateProgress();
+});
+
+// Mobile menu toggle functionality
+function toggleMobileMenu() {
+    const mobileMenu = document.getElementById('mobileMenu');
+    const hamburger = document.querySelector('.navbar-toggler-btn');
+    
+    if (mobileMenu.classList.contains('active')) {
+        mobileMenu.classList.remove('active');
+        hamburger.classList.remove('active');
+    } else {
+        mobileMenu.classList.add('active');
+        hamburger.classList.add('active');
+    }
+}
+
+// Close mobile menu when clicking outside
+document.addEventListener('click', function(event) {
+    const mobileMenu = document.getElementById('mobileMenu');
+    const hamburger = document.querySelector('.navbar-toggler-btn');
+    
+    if (!mobileMenu.contains(event.target) && !hamburger.contains(event.target)) {
+        mobileMenu.classList.remove('active');
+        hamburger.classList.remove('active');
+    }
+});
+</script>
+<script>
+// Server integration for saving/loading
+(function(){
+    function getParam(name){ const u = new URL(window.location.href); return u.searchParams.get(name); }
+    async function fetchJSON(url, options){ const res = await fetch(url, Object.assign({ headers:{'Content-Type':'application/json'} }, options||{})); if(!res.ok) throw new Error('Request failed'); return res.json(); }
+    function formToObject(form){ const fd = new FormData(form); const obj = {}; for (const [k,v] of fd.entries()) { if (obj[k] !== undefined) { if (!Array.isArray(obj[k])) obj[k] = [obj[k]]; obj[k].push(v); } else { obj[k] = v; } } return obj; }
+
+    const resumeId = getParam('resume_id');
+    const form = document.getElementById('cv-form');
+    const saveBtn = document.getElementById('save-server');
+
+    if (resumeId) {
+        // Load latest from server and populate localStorage + form
+        fetchJSON('api/get_resume.php?resume_id=' + encodeURIComponent(resumeId))
+            .then(data => {
+                if (data && data.resume && data.resume.data) {
+                    localStorage.setItem('resumeDraft', JSON.stringify(data.resume.data));
+                    if (typeof loadResumeDraft === 'function') loadResumeDraft();
+                }
+            })
+            .catch(()=>{});
+    }
+
+    saveBtn.addEventListener('click', async ()=>{
+        try {
+            const data = formToObject(form);
+            let title = null; let rid = resumeId ? parseInt(resumeId) : 0;
+            if (!rid) { title = prompt('Enter a title for your resume'); if (!title) return; }
+            const payload = { resume_id: rid, title: title, data: data };
+            const res = await fetchJSON('api/save_resume.php', { method:'POST', body: JSON.stringify(payload) });
+            if (!rid && res.resume_id) {
+                const u = new URL(window.location.href); u.searchParams.set('resume_id', res.resume_id); history.replaceState({}, '', u.toString());
+            }
+            saveBtn.textContent = 'Saved'; setTimeout(()=>{ saveBtn.textContent = 'Save to Server'; }, 1500);
+        } catch (e) { alert('Save failed.'); }
+    });
+})();
+</script>
+</body>

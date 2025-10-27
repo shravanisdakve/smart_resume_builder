@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Suggestions</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <style>
+        .suggestions-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
+        .suggestion-card { background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); padding: 30px; text-align: center; transition: transform 0.3s ease; }
+        .suggestion-card:hover { transform: translateY(-5px); }
+        .suggestion-icon { font-size: 3rem; color: var(--clr-blue); margin-bottom: 20px; }
+        .suggestion-card h3 { font-size: 1.8rem; font-weight: 600; color: var(--clr-dark); margin-bottom: 15px; }
+        .suggestion-card ul { list-style: none; padding: 0; text-align: left; }
+        .suggestion-card ul li { margin-bottom: 10px; color: var(--clr-grey); position: relative; padding-left: 25px; }
+        .suggestion-card ul li::before { content: '\2713'; color: var(--clr-green); position: absolute; left: 0; top: 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Resume Suggestions & Tips</h1>
+
+        <div class="suggestions-grid">
+            <div class="suggestion-card">
+                <div class="suggestion-icon">📝</div>
+                <h3>Formatting Tips</h3>
+                <ul>
+                    <li>Use a clean, readable font (e.g., Arial, Calibri).</li>
+                    <li>Maintain consistent formatting throughout.</li>
+                    <li>Use bullet points for readability.</li>
+                    <li>Keep it to one page if you have less than 10 years of experience.</li>
+                </ul>
+            </div>
+
+            <div class="suggestion-card">
+                <div class="suggestion-icon">⚠️</div>
+                <h3>Common Mistakes to Avoid</h3>
+                <ul>
+                    <li>Typos and grammatical errors.</li>
+                    <li>Generic objective statements.</li>
+                    <li>Irrelevant personal information.</li>
+                    <li>Using passive voice.</li>
+                </ul>
+            </div>
+
+            <div class="suggestion-card">
+                <div class="suggestion-icon">✨</div>
+                <h3>Power Words</h3>
+                <ul>
+                    <li>Achieved, Managed, Developed, Implemented.</li>
+                    <li>Initiated, Led, Optimized, Pioneered.</li>
+                    <li>Resolved, Transformed, Generated, Exceeded.</li>
+                    <li>Collaborated, Mentored, Facilitated.</li>
+                </ul>
+            </div>
+
+            <div class="suggestion-card">
+                <div class="suggestion-icon">🎯</div>
+                <h3>Tailoring Your Resume</h3>
+                <ul>
+                    <li>Customize for each job application.</li>
+                    <li>Use keywords from the job description.</li>
+                    <li>Highlight relevant skills and experiences.</li>
+                    <li>Quantify achievements with numbers.</li>
+                </ul>
+            </div>
+
+            <div class="suggestion-card">
+                <div class="suggestion-icon">✅</div>
+                <h3>What Recruiters Look For</h3>
+                <ul>
+                    <li>Clear, concise language.</li>
+                    <li>Quantifiable achievements.</li>
+                    <li>Relevant skills and experience.</li>
+                    <li>Easy-to-read format.</li>
+                </ul>
+            </div>
+
+            <div class="suggestion-card">
+                <div class="suggestion-icon">💡</div>
+                <h3>General Advice</h3>
+                <ul>
+                    <li>Proofread multiple times.</li>
+                    <li>Get a second opinion.</li>
+                    <li>Save as PDF to preserve formatting.</li>
+                    <li>Keep it updated regularly.</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2 class="text-center" style="margin-top: 60px;">Your Personalized Suggestions</h2>
+        <ul id="suggestions-list" style="max-width: 800px; margin: 20px auto; list-style: disc; text-align: left;"></ul>
+    </div>
+    <script src="assets/js/suggestions.js"></script>
+</body>
+</html>

@@ -1,0 +1,376 @@
+@import url('https://fonts.googleapis.com/css2?family=Valera+Round&display=swap');
+
+/* Classic Template */
+.classic-template {
+    padding: 2rem;
+    border: 1px solid #ccc;
+}
+
+.classic-template h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.classic-template h2 {
+    font-size: 1.5rem;
+    border-bottom: 2px solid #333;
+    padding-bottom: 5px;
+    margin-top: 1.5rem;
+}
+
+/* Modern Template */
+.modern-template {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+    padding: 2rem;
+    background-color: #f4f4f4;
+}
+
+.modern-template .left-column {
+    background-color: #333;
+    color: white;
+    padding: 2rem;
+}
+
+.modern-template .right-column {
+    padding: 2rem;
+}
+
+.modern-template h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.modern-template h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-top: 1.5rem;
+}
+
+/* Minimal Template */
+.minimal-template {
+    padding: 2rem;
+}
+
+.minimal-template h1 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.minimal-template h2 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.minimal-template p {
+    font-size: 0.9rem;
+}
+
+/* Harvard Template */
+.harvard-template {
+    padding: 2rem;
+    border: 1px solid #ccc;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.harvard-template h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.harvard-template h2 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-bottom: 1px solid #000;
+    padding-bottom: 5px;
+    margin-top: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Swiss Template */
+.swiss-template {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 2rem;
+    padding: 2rem;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+}
+
+.swiss-template .left-column {
+    padding: 2rem;
+}
+
+.swiss-template .right-column {
+    padding: 2rem;
+}
+
+.swiss-template h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+.swiss-template h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-top: 1.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Pinnacle Template */
+.pinnacle-template {
+    padding: 2rem;
+}
+
+.pinnacle-template .header {
+    background-color: #333;
+    color: white;
+    padding: 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.pinnacle-template h1 {
+    font-size: 3rem;
+    margin: 0;
+}
+
+.pinnacle-template h2 {
+    font-size: 1.5rem;
+    border-bottom: 2px solid #333;
+    padding-bottom: 5px;
+    margin-top: 1.5rem;
+}
+
+/* Cubic Template */
+.cubic-template {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.cubic-template .left-column {
+    background-color: #f2f2f2;
+    padding: 2rem;
+}
+
+.cubic-template h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.cubic-template h2 {
+    font-size: 1.5rem;
+    background-color: #333;
+    color: white;
+    padding: 5px 10px;
+    margin-top: 1.5rem;
+}
+
+/* Diamond Template */
+.diamond-template {
+    padding: 2rem;
+    border: 10px solid #333;
+}
+
+.diamond-template h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #333;
+    padding-bottom: 1rem;
+}
+
+.diamond-template h2 {
+    font-size: 1.5rem;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+    margin-top: 1.5rem;
+}
+
+/* Glimmer Template */
+.glimmer-template {
+    padding: 2rem;
+    text-align: center;
+}
+
+.glimmer-template h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.glimmer-template h2 {
+    font-size: 1.2rem;
+    color: #777;
+    margin-top: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Enfold Template */
+.enfold-template {
+    padding: 2rem;
+}
+
+.enfold-template h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    border-left: 5px solid #333;
+    padding-left: 1rem;
+}
+
+.enfold-template h2 {
+    font-size: 1.5rem;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+    margin-top: 1.5rem;
+}
+
+/* Valera Template */
+.valera-template {
+    padding: 2rem;
+    font-family: 'Valera Round', sans-serif;
+}
+
+.valera-template h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.valera-template h2 {
+    font-size: 1.5rem;
+    text-align: center;
+    margin-top: 1.5rem;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+}
+
+/* Concept Template */
+.concept-template {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.concept-template .right-column {
+    background-color: #f2f2f2;
+    padding: 2rem;
+}
+
+.concept-template h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.concept-template h2 {
+    font-size: 1.5rem;
+    border-bottom: 2px solid #333;
+    padding-bottom: 5px;
+    margin-top: 1.5rem;
+}
+
+/* Cascade Template */
+.cascade-template {
+    padding: 2rem;
+}
+
+.cascade-template h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.cascade-template h2 {
+    font-size: 1.5rem;
+    margin-top: 1.5rem;
+    padding-left: 1rem;
+    border-left: 3px solid #333;
+}
+
+/* Preview Animations */
+#resume-preview {
+    transition: opacity 0.5s ease-in-out;
+}
+
+.fade-out {
+    opacity: 0;
+}
+
+.fade-in {
+    opacity: 1;
+}
+
+.template-thumbnails {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 2rem;
+}
+
+.thumbnail {
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+.thumbnail.active,
+.thumbnail:hover {
+    border-color: var(--clr-blue);
+}
+
+.thumbnail iframe {
+    width: 300px;
+    height: 400px;
+    transform: scale(0.5);
+    transform-origin: top left;
+    border: none;
+}
+
+/* Modal */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; 
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
