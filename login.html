@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,209 +6,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Build Resume</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .login-container {
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            overflow: hidden;
-            max-width: 900px;
-            width: 100%;
-            display: flex;
-            min-height: 600px;
-        }
-
-        .login-left {
-            background: linear-gradient(135deg, #1A91F0 0%, #1170CD 100%);
-            color: white;
-            padding: 60px 40px;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-
-        .login-right {
-            padding: 60px 40px;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .welcome-text {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
-
-        .welcome-desc {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            line-height: 1.6;
-            margin-bottom: 30px;
-        }
-
-        .feature-list {
-            list-style: none;
-            padding: 0;
-            margin-top: 30px;
-        }
-
-        .feature-list li {
-            padding: 10px 0;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .feature-list li:before {
-            content: "✓";
-            color: #1A91F0;
-            font-weight: bold;
-            font-size: 18px;
-        }
-
-        .login-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: #1e2532;
-        }
-
-        .login-subtitle {
-            color: #656e83;
-            margin-bottom: 30px;
-            font-size: 1.1rem;
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        .form-group label {
-            font-weight: 600;
-            color: #1e2532;
-            margin-bottom: 8px;
-            display: block;
-        }
-
-        .form-control {
-            border: 2px solid #e1e5e9;
-            border-radius: 10px;
-            padding: 15px 20px;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            background: #f8f9fa;
-            width: 100%;
-            outline: none;
-        }
-
-        .form-control:focus {
-            border-color: #1A91F0;
-            box-shadow: 0 0 0 0.2rem rgba(26, 145, 240, 0.25);
-            background: white;
-        }
-
-        .btn-login {
-            background: linear-gradient(135deg, #1A91F0 0%, #1170CD 100%);
-            border: none;
-            border-radius: 10px;
-            padding: 15px 30px;
-            font-size: 16px;
-            font-weight: 600;
-            color: white;
-            width: 100%;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-        }
-
-        .btn-login:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(26, 145, 240, 0.3);
-        }
-
-        .btn-register {
-            background: transparent;
-            border: 2px solid #1A91F0;
-            color: #1A91F0;
-            border-radius: 10px;
-            padding: 15px 30px;
-            font-size: 16px;
-            font-weight: 600;
-            width: 100%;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 15px;
-            text-decoration: none;
-            display: block;
-            text-align: center;
-        }
-
-        .btn-register:hover {
-            background: #1A91F0;
-            color: white;
-        }
-
-        .error-message {
-            color: #dc3545;
-            font-size: 14px;
-            margin-top: 5px;
-            display: none;
-        }
-
-        .form-control.error {
-            border-color: #dc3545;
-        }
-
-        .forgot-password {
-            display: block;
-            text-align: right;
-            margin-top: 10px;
-            font-size: 14px;
-            color: #1A91F0;
-            text-decoration: none;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Arial', sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
+        .login-container { background: white; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); overflow: hidden; max-width: 900px; width: 100%; display: flex; min-height: 600px; }
+        .login-left { background: linear-gradient(135deg, #1A91F0 0%, #1170CD 100%); color: white; padding: 60px 40px; flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+        .login-right { padding: 60px 40px; flex: 1; display: flex; flex-direction: column; justify-content: center; }
+        .welcome-text { font-size: 2rem; font-weight: 700; margin-bottom: 20px; }
+        .welcome-desc { font-size: 1.1rem; opacity: 0.9; line-height: 1.6; margin-bottom: 30px; }
+        .feature-list { list-style: none; padding: 0; margin-top: 30px; }
+        .feature-list li { padding: 10px 0; display: flex; align-items: center; gap: 10px; }
+        .feature-list li:before { content: '✓'; color: #fff; font-weight: bold; font-size: 18px; }
+        .login-title { font-size: 2.2rem; font-weight: 700; margin-bottom: 10px; color: #1e2532; }
+        .login-subtitle { color: #656e83; margin-bottom: 20px; font-size: 1.05rem; }
+        .form-group { margin-bottom: 22px; }
+        .form-group label { font-weight: 600; color: #1e2532; margin-bottom: 8px; display: block; }
+        .form-control { border: 2px solid #e1e5e9; border-radius: 10px; padding: 14px 16px; font-size: 16px; transition: all 0.2s ease; background: #f8f9fa; width: 100%; outline: none; }
+        .form-control:focus { border-color: #1A91F0; box-shadow: 0 0 0 0.2rem rgba(26,145,240,0.15); background: white; }
+        .btn-login { background: linear-gradient(135deg, #1A91F0 0%, #1170CD 100%); border: none; border-radius: 10px; padding: 14px 20px; font-size: 16px; font-weight: 600; color: white; width: 100%; transition: all 0.2s ease; text-transform: uppercase; letter-spacing: .5px; cursor: pointer; }
+        .btn-login:hover { transform: translateY(-1px); box-shadow: 0 10px 20px rgba(26,145,240,0.25); }
+        .btn-register { background: transparent; border: 2px solid #1A91F0; color: #1A91F0; border-radius: 10px; padding: 14px 20px; font-size: 16px; font-weight: 600; width: 100%; transition: all 0.2s ease; text-transform: uppercase; letter-spacing: .5px; margin-top: 12px; text-decoration: none; display: block; text-align: center; }
+        .btn-register:hover { background: #1A91F0; color: white; }
+        .forgot-password { display: block; text-align: right; margin-top: 10px; font-size: 14px; color: #1A91F0; text-decoration: none; }
+        .error-banner { background: #fdecea; color: #b42318; border: 1px solid #f3c1bd; padding: 12px 14px; border-radius: 10px; margin-bottom: 16px; }
+        .error-message { color: #dc3545; font-size: 14px; margin-top: 6px; display: none; }
+        .form-control.error { border-color: #dc3545; }
         @media (max-width: 768px) {
-            .login-container {
-                flex-direction: column;
-                margin: 10px;
-            }
-            
-            .login-left, .login-right {
-                padding: 40px 30px;
-            }
-            
-            .login-left {
-                order: 2;
-            }
-            
-            .login-right {
-                order: 1;
-            }
+            .login-container { flex-direction: column; margin: 10px; }
+            .login-left, .login-right { padding: 40px 30px; }
+            .login-left { order: 2; }
+            .login-right { order: 1; }
         }
     </style>
+    <link rel="icon" href="assets/images/curriculum-vitae.png">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' https://code.jquery.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net data:; img-src 'self' data:; font-src 'self' https://r2cdn.perplexity.ai;">
 </head>
 <body>
     <div class="login-container">
@@ -226,92 +57,45 @@
         <div class="login-right">
             <h2 class="login-title">Login</h2>
             <p class="login-subtitle">Sign in to your account to continue</p>
-            
-            <form id="loginForm" action="login.php" method="post">
+
+            <form id="loginForm" action="login.php" method="post" novalidate>
                 <div class="form-group">
                     <label for="email">Email Address *</label>
                     <input type="email" class="form-control" id="email" name="email" required>
+
                     <div class="error-message" id="emailError">Please enter a valid email address</div>
                 </div>
-                
                 <div class="form-group">
                     <label for="password">Password *</label>
                     <input type="password" class="form-control" id="password" name="password" required minlength="6">
                     <div class="error-message" id="passwordError">Password must be at least 6 characters long</div>
                     <a href="forgot-password.html" class="forgot-password">Forgot password?</a>
                 </div>
-                
                 <button type="submit" class="btn-login">Login</button>
             </form>
-            
             <a href="register.html" class="btn-register">Create New Account</a>
+            <div style="margin-top:12px; text-align:center">
+                <a href="index.html" style="color:#1A91F0; text-decoration:none">Go to Dashboard</a>
+            </div>
         </div>
     </div>
-
     <script>
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
+        const form = document.getElementById('loginForm');
+        form.addEventListener('submit', function(e) {
+            const email = document.getElementById('email');
+            const password = document.getElementById('password');
             const emailError = document.getElementById('emailError');
             const passwordError = document.getElementById('passwordError');
-            
+
             let isValid = true;
-            
-            // Clear previous errors
-            emailError.style.display = 'none';
-            passwordError.style.display = 'none';
-            document.getElementById('email').classList.remove('error');
-            document.getElementById('password').classList.remove('error');
-            
-            // Email validation
+            emailError.style.display = 'none'; passwordError.style.display = 'none';
+            email.classList.remove('error'); password.classList.remove('error');
+
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!email || !emailRegex.test(email)) {
-                emailError.style.display = 'block';
-                document.getElementById('email').classList.add('error');
-                isValid = false;
-            }
-            
-            // Password validation
-            if (!password || password.length < 6) {
-                passwordError.style.display = 'block';
-                document.getElementById('password').classList.add('error');
-                isValid = false;
-            }
-            
-            if (isValid) {
-                alert('Login successful! Redirecting to resume builder...');
-                window.location.href = 'resume.html';
-            }
-        });
-        
-        // Real-time validation
-        document.getElementById('email').addEventListener('input', function() {
-            const email = this.value;
-            const emailError = document.getElementById('emailError');
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            
-            if (email && !emailRegex.test(email)) {
-                emailError.style.display = 'block';
-                this.classList.add('error');
-            } else {
-                emailError.style.display = 'none';
-                this.classList.remove('error');
-            }
-        });
-        
-        document.getElementById('password').addEventListener('input', function() {
-            const password = this.value;
-            const passwordError = document.getElementById('passwordError');
-            
-            if (password && password.length < 6) {
-                passwordError.style.display = 'block';
-                this.classList.add('error');
-            } else {
-                passwordError.style.display = 'none';
-                this.classList.remove('error');
-            }
+            if (!email.value || !emailRegex.test(email.value)) { emailError.style.display = 'block'; email.classList.add('error'); isValid = false; }
+            if (!password.value || password.value.length < 6) { passwordError.style.display = 'block'; password.classList.add('error'); isValid = false; }
+
+            if (!isValid) { e.preventDefault(); }
         });
     </script>
 </body>
